@@ -74,19 +74,49 @@ int main() {
 			}
 		}
 		else if (key == 3) {
-			cout << "This service is currently unavailable." << endl;
-			cout << "Error code 102" << endl;
-			cout << "----------------------------------------------" << endl;
-			bool quitRemove = false;
-			while (quitRemove == false) {
-				cout << "Press \'q\' to quit : ";
-				char keyRemove;
-				cin >> keyRemove;
-				if (keyRemove == 'q') {
-					cout << "Redirecting back to main page..." << endl;
-					quitRemove = true;
+			cout << "-----------------------------" << endl;
+			cout << " DELETE FROM LIST" << endl;
+			cout << "-----------------------------" << endl;
+			bool continuePrint = true;
+			int iterator = 0;
+			while (continuePrint == true) {
+				if (todoList[iterator].length() != 0) {
+					cout << iterator + 1 << ". " << todoList[iterator] << endl;
+					iterator++;
+				} else {
+					continuePrint = false;
 				}
 			}
+			
+			// bugged
+			bool endOfList = false;
+		 	int listIterator = 0;
+		 	while (endOfList == false) {
+		 		cout << " Please choose the list to be deleted : ";
+				int listNum;
+				cin >> listNum;
+		 		if (todoList[listIterator - 1].length() != 0) {
+		 			todoList[listIterator - 1] = "";
+		 			cout << "Item [ " << todoList[listIterator - 1] << " ] has been removed!" << endl;
+		 			bool quitRemove = false;
+					while (quitRemove == false) {
+						cout << "Press \'q\' to quit : ";
+						char keyRemove;
+						cin >> keyRemove;
+						if (keyRemove == 'q') {
+							cout << "Redirecting back to main page..." << endl;
+							quitRemove = true;
+							endOfList = true;
+						}
+					}
+				}
+				else {
+					cout << "There is no such num!" << endl;
+					listIterator++;
+				}
+			 }
+			
+			
 		}
 	}
 }
